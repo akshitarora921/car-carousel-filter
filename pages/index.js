@@ -4,7 +4,7 @@ import Card from "../components/Card";
 import Filter from "../components/Filter";
 import styles from "../styles/Home.module.css";
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const data = await fetch("https://assessment-edvora.herokuapp.com/").then(
     (res) => res.json()
   );

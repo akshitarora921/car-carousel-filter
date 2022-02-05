@@ -1,20 +1,48 @@
 /* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
+import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import Filter from "../components/Filter";
-import styles from "../styles/Home.module.css";
+import data from "../data/data.json";
+// export const getServerSideProps = async () => {
+//   const data = await fetch("https://assessment-edvora.herokuapp.com/").then(
+//     (res) => res.json()
+//   );
+//   return {
+//     props: { data: data },
+//   };
+// };
 
-export const getServerSideProps = async () => {
-  const data = await fetch("https://assessment-edvora.herokuapp.com/").then(
-    (res) => res.json()
-  );
-  console.log(data);
-  return {
-    props: { data: data },
-  };
-};
-export default function Home({ data }) {
-  console.log(data);
+export default function Home({}) {
+  const [productNames, setProductNames] = useState([]);
+  // const [filteredData, setFilteredData] = useState([]);
+  const [filters, setFilters] = useState({
+    productName: "",
+    city: "",
+    state: "",
+  });
+
+  function filteringData(data) {
+    let filterData = [...data];
+    if (!!filters.productName) {
+      filterData = filterData.filter(
+        (product) => product.product_name === filters.productName
+      );
+    }
+    if (!!filters.city) {
+      filterData = filterData.filter(
+        (product) => product.address.city === filters.city
+      );
+    }
+    if (!!filters.state) {
+      filterData = filterData.filter(
+        (product) => product.address.state === filters.state
+      );
+    }
+    console.log(filterData);
+    return filterData;
+  }
+  const filteredData = filteringData(data);
   return (
     <div>
       <Head>
@@ -24,28 +52,38 @@ export default function Home({ data }) {
       </Head>
 
       <main>
-        <div className='flex bg-gray-700 h-screen p-10'>
-          <div className='flex flex-col bg-gray-900 rounded-xl h-min p-4'>
+        <div className='flex flex-col lg:flex-row bg-gray-700 min-h-screen lg:p-10'>
+          <h1 className='text-3xl text-gray-300 block text-center p-2 lg:hidden'>
+            Edvora
+          </h1>
+
+          <div className='flex items-center flex-col bg-gray-900 m-2 rounded-xl h-min p-4'>
             <h4 className='text-2xl font-thin text-gray-300 p-2'>Filter</h4>
             <hr />
-            <Filter data={data} />
+            <Filter data={filteredData} setFilters={setFilters} />
           </div>
-          <div className='flex flex-1 flex-col px-10 overflow-hidden'>
-            <h1 className='text-3xl text-gray-300'>Edvora</h1>
+          <div className='flex flex-1 flex-col px-2 lg:px-10 overflow-hidden'>
+            <h1 className='text-3xl text-gray-300 hidden lg:block'>Edvora</h1>
             <h3 className='text-2xl text-gray-500'>Products</h3>
-            <div className='py-4'>
-              <h4 className='text-2xl text-gray-300 p-2'>Product Name</h4>
-              <hr />
-              <div className='flex bg-gray-900 p-4 rounded-3xl mt-3 overflow-x-scroll gap-3'>
-                {data
-                  // .slice(1, 2)
-                  // .filter((data) => data.product_name == "Tencent Limited")
-
-                  .map((card, cardIdx) => (
-                    <Card cardData={card} key={cardIdx} />
-                  ))}
-              </div>
-            </div>
+            {filteredData
+              .reduce(
+                (acc, cur) =>
+                  acc.includes(cur.product_name)
+                    ? acc
+                    : [...acc, cur.product_name],
+                []
+              )
+              .map((name) => (
+                <div className='py-4' key={1}>
+                  <h4 className='text-2xl text-gray-300 p-2'>{name}</h4>
+                  <hr />
+                  <div className='flex bg-gray-900 p-4 rounded-3xl mt-3 overflow-x-scroll gap-3 no-scrollbar'>
+                    {filteredData.map((card, cardIdx) => (
+                      <Card cardData={card} key={cardIdx} />
+                    ))}
+                  </div>
+                </div>
+              ))}
           </div>
         </div>
       </main>

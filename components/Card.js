@@ -1,3 +1,5 @@
+import { formatDate } from "../utils/formatDate";
+
 /* eslint-disable @next/next/no-img-element */
 function Card({ cardData }) {
   return (
@@ -17,7 +19,7 @@ function Card({ cardData }) {
       <div className='flex justify-around items-center mt-3 gap-3'>
         <h1 className='text-md text-gray-500'>{cardData.address.city}</h1>
         <h3 className='text-sm text-gray-400'>
-          Date: {new Date(cardData.data).toString()}
+          Date: {formatDate(cardData.date)}
         </h3>
       </div>
       <p className='text-xs text-gray-400 mt-4'>{cardData.discription}</p>

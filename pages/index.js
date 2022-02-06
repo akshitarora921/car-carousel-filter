@@ -60,7 +60,11 @@ export default function Home({ data }) {
           <div className='flex items-center flex-col bg-[#131313] m-2 rounded-xl p-4 h-min'>
             <h4 className='text-2xl font-thin text-gray-300 p-2'>Filter</h4>
             <hr />
-            <Filter data={filteredData} setFilters={setFilters} />
+            <Filter
+              data={filteredData}
+              filters={filters}
+              setFilters={setFilters}
+            />
           </div>
           <div className='flex flex-1 flex-col lg:px-10 overflow-hidden'>
             <h1 className='text-3xl text-gray-300 hidden lg:block'>Edvora</h1>

@@ -3,14 +3,14 @@ function Filter({ data, setFilters }) {
     <>
       <div className='relative inline-flex self-center py-2'>
         <select
-          className='text-2xl font-thin rounded border-2 border-black text-gray-200 h-14 w-60 pl-5 pr-10 bg-gray-700 hover:border-gray-400 appearance-none'
+          className='text-2xl font-thin rounded border-2 border-black text-gray-200 h-12 w-60 pl-5 pr-10 bg-[#232323] hover:border-gray-400 appearance-none'
           onChange={(e) =>
             setFilters((preVal) => {
               return { ...preVal, productName: e.target.value };
             })
           }
         >
-          <option value='' disabled selected>
+          <option className='font-light' value='' disabled selected>
             Product
           </option>
           {data
@@ -23,7 +23,7 @@ function Filter({ data, setFilters }) {
             )
             .sort()
             .map((title) => (
-              <option key={title} value={title}>
+              <option className='font-light' key={title} value={title}>
                 {title}
               </option>
             ))}
@@ -31,14 +31,14 @@ function Filter({ data, setFilters }) {
       </div>
       <div className='relative inline-flex self-center py-2'>
         <select
-          className='text-2xl font-thin rounded border-2 border-black text-gray-200 h-14 w-60 pl-5 pr-10 bg-gray-700 hover:border-gray-400 appearance-none'
+          className='text-2xl font-thin rounded border-2 border-black text-gray-200 h-12 w-60 pl-5 pr-10 bg-[#232323] hover:border-gray-400 appearance-none'
           onChange={(e) =>
             setFilters((preVal) => {
               return { ...preVal, state: e.target.value };
             })
           }
         >
-          <option value='' disabled selected>
+          <option className='font-light' value='' disabled selected>
             State
           </option>
           {data
@@ -51,7 +51,7 @@ function Filter({ data, setFilters }) {
             )
             .sort()
             .map((title) => (
-              <option key={title} value={title}>
+              <option className='font-light' key={title} value={title}>
                 {title}
               </option>
             ))}
@@ -59,14 +59,14 @@ function Filter({ data, setFilters }) {
       </div>
       <div className='relative inline-flex self-center py-2'>
         <select
-          className='text-2xl font-thin rounded border-2 border-black text-gray-200 h-14 w-60 pl-5 pr-10 bg-gray-700 hover:border-gray-400 appearance-none'
+          className='text-2xl font-thin rounded border-2 border-black text-gray-200 h-12 w-60 pl-5 pr-10 bg-[#232323] hover:border-gray-400 appearance-none'
           onChange={(e) =>
             setFilters((preVal) => {
               return { ...preVal, city: e.target.value };
             })
           }
         >
-          <option value='' disabled selected>
+          <option className='font-light' value='' disabled selected>
             City
           </option>
           {data
@@ -79,7 +79,7 @@ function Filter({ data, setFilters }) {
             )
             .sort()
             .map((title) => (
-              <option key={title} value={title}>
+              <option className='font-light' key={title} value={title}>
                 {title}
               </option>
             ))}

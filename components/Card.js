@@ -3,7 +3,7 @@ import { formatDate } from "../utils/formatDate";
 /* eslint-disable @next/next/no-img-element */
 function Card({ cardData }) {
   return (
-    <div className='bg-gray-600 font-semibold rounded-2xl shadow-lg p-4 min-w-fit overflow-hidden duration-500 z-10 md:hover:scale-110'>
+    <div className='bg-[#232323] font-semibold rounded-2xl shadow-lg p-4 min-w-fit overflow-hidden duration-500 z-10 md:hover:scale-105'>
       <div className='flex justify-between'>
         <img
           className='w-24 h-24 rounded-3xl shadow-lg'

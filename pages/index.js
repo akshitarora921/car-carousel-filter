@@ -7,16 +7,16 @@ import Filter from "../components/Filter";
 import data from "../data/data.json";
 import CardContainer from "../components/CardsContainer";
 
-export const getServerSideProps = async () => {
-  const data = await fetch("https://assessment-edvora.herokuapp.com/").then(
-    (res) => res.json()
-  );
-  return {
-    props: { data: data },
-  };
-};
+// export const getServerSideProps = async () => {
+//   const data = await fetch("https://assessment-edvora.herokuapp.com/").then(
+//     (res) => res.json()
+//   );
+//   return {
+//     props: { data: data },
+//   };
+// };
 
-export default function Home({ data }) {
+export default function Home() {
   const [filters, setFilters] = useState({
     productName: "",
     city: "",
